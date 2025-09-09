@@ -10,16 +10,14 @@ function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        {/* <CounterScore />
-       <CounterInc />
-       <CounterDec /> */}
+    <div className="app-container">
+      <section className="app-section">
         <TodoApp />
+      </section>
+      <section className="app-section">
         <CourseApp />
-
-      </div>
-    </>
+      </section>
+    </div>
   )
 }
 
