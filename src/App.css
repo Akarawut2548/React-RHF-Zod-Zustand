@@ -1,93 +1,202 @@
+:root {
+  /* Define some custom properties for colors to easily manage them */
+  --background-color: #1a1a2e; /* Darker background */
+  --text-color: #e0e0e0; /* Light grey for general text */
+  --primary-color: #007bff; /* A vibrant primary color */
+  --secondary-color: #6c757d; /* A subtle secondary color */
+  --accent-color: #2e86de; /* An accent for highlights */
+  --glass-bg-light: rgba(255, 255, 255, 0.05); /* Lighter glass effect */
+  --glass-bg-dark: rgba(255, 255, 255, 0.02);  /* Darker glass effect */
+  --border-color: rgba(255, 255, 255, 0.1); /* Border for glass elements */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.2);
+  --shadow-strong: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Using a modern, clean font */
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-  text-align: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    text-align: center;
+    width: 100%; /* Ensure root takes full width */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
+/* Overall app container for grid layout */
 .app-container {
-  display: grid;
-  gap: 3rem;
-  width: 100%;
+    display: grid;
+    /* Use responsive columns: 1 column on small screens, 2 on larger */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem; /* Adjusted gap for better spacing */
+    width: 100%;
+    align-items: flex-start; /* Align items to the start of their grid area */
 }
 
+/* Styling for individual sections (e.g., Todo List, Form) */
 .app-section {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  padding: 2.5rem 2rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+    background: var(--glass-bg-light); /* Lighter glass background */
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    backdrop-filter: blur(15px); /* Stronger blur for glass effect */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px var(--shadow-medium); /* Enhanced shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smoother transition */
+    flex: 1; /* Allow sections to grow and shrink */
 }
 
 .app-section:hover {
-  transform: translateY(-2px);
+    transform: translateY(-5px) scale(1.01); /* More pronounced lift and slight scale */
+    box-shadow: 0 15px 40px var(--shadow-strong); /* Stronger shadow on hover */
 }
 
 .app-section h1 {
-  margin: 0 0 2rem;
-  font-size: 2rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 0 2rem;
+    font-size: 2.5rem; /* Slightly larger heading */
+    font-weight: 700; /* Bolder font weight */
+    background: linear-gradient(135deg, #a7b7ff 0%, #d8b4fe 100%); /* Softer, more vibrant gradient */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 3px 6px var(--shadow-light); /* Enhanced text shadow */
+    letter-spacing: 0.05em; /* Slightly increased letter spacing */
 }
 
 .app-section h2 {
-  margin-top: 1.5rem;
-  font-size: 1.5rem;
-  color: var(--primary-color);
+    margin-top: 1.5rem;
+    font-size: 1.8rem; /* Slightly larger sub-heading */
+    color: var(--accent-color); /* Use accent color for sub-headings */
+    font-weight: 600;
 }
 
+/* Styling for individual cards (e.g., items in a list) */
 .card {
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin: 1rem 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 1.5rem;
+    background: var(--glass-bg-dark); /* Darker glass background for cards */
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    text-align: left; /* Align card content to the left */
+    display: flex; /* Use flexbox for internal card layout if needed */
+    justify-content: space-between; /* Example: space between content and action buttons */
+    align-items: center;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px); /* Slightly more lift on hover */
+    box-shadow: 0 12px 20px var(--shadow-medium); /* Enhanced shadow on hover */
+    background: rgba(255, 255, 255, 0.08); /* Slight background change on hover */
 }
 
+/* Styling for the form container */
 .form-container {
-  max-width: 500px;
-  margin: 0 auto 2rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    padding: 2rem; /* Increased padding */
+    background: var(--glass-bg-dark); /* Darker glass background */
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px var(--shadow-light);
 }
 
+/* Styling for lists of items */
 .list-container {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1.5rem;
+    display: grid;
+    gap: 0.8rem; /* Slightly reduced gap between list items */
+    margin-top: 1.5rem;
 }
 
+/* Media queries for responsiveness */
 @media (max-width: 768px) {
-  #root {
-    padding: 2rem 1rem;
-  }
-  
-  .app-section {
-    padding: 1.5rem;
-  }
-  
-  .app-section h1 {
-    font-size: 1.75rem;
-  }
+    #root {
+        padding: 2rem 1rem;
+    }
+
+    .app-container {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        gap: 2rem; /* Adjust gap for mobile */
+    }
+
+    .app-section {
+        padding: 1.5rem;
+    }
+
+    .app-section h1 {
+        font-size: 2rem; /* Adjust heading size for mobile */
+    }
+
+    .app-section h2 {
+        font-size: 1.4rem;
+    }
 }
 
+/* Styling for documentation links */
 .read-the-docs {
-  color: #888;
-  margin-top: 2rem;
-  font-size: 0.875rem;
-  opacity: 0.8;
+    color: var(--secondary-color);
+    margin-top: 2rem;
+    font-size: 0.9rem; /* Slightly larger font size */
+    opacity: 0.9; /* Slightly more visible */
+    transition: color 0.3s ease;
+}
+
+.read-the-docs:hover {
+    color: var(--text-color); /* Brighter on hover */
+}
+
+/* Global input/button styles (example - assuming you have inputs/buttons) */
+input, button, select, textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--glass-bg-dark);
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    width: calc(100% - 2.4rem); /* Adjust width for padding */
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(46, 134, 222, 0.3);
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    padding: 0.8rem 2rem;
+    margin-right: 1rem;
+}
+
+button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+/* Example for a delete button if needed */
+button.delete-btn {
+    background-color: #dc3545; /* Red for delete */
+}
+
+button.delete-btn:hover {
+    background-color: #c82333;
 }
